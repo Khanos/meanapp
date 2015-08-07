@@ -26,6 +26,11 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+      .when('/contact', {
+        templateUrl: 'views/contact.html',
+        controller: 'ContactCtrl',
+        controllerAs: 'contact'
+      })
       .when('/movies', {
         templateUrl: 'views/movies.html',
         controller: 'MoviesCtrl',

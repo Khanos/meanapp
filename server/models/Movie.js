@@ -5,7 +5,7 @@ var uniqueValidator = require('mongoose-unique-validator');
 var MovieSchema = new mongoose.Schema({
   title: {
     type: String,
-//    index: true,
+    index: true,
     unique: true,
     required: true
   },
