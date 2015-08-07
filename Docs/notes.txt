@@ -1,3 +1,4 @@
+Configuración del Entorno de Desarrollo
 1.- Se instalan las dependencias.
 	$ sudo aptitude install node nodejs mongodb npm ruby ruby-dev
 	Nota: Si el repo no posee el paquete de node mas actual, se debe descargar el source de la pagina oficial para instalarlo manualmente, para esto se deben tener instalados los paquetes necesarios:
@@ -35,3 +36,28 @@
 	4.1- Instalación de yeoman:
 	Una vez creada la carpeta cliente, se ingresa en ella y se ejecuta:
 		$ npm install -g yo
+
+Configuración del Repositorio
+1.- Se instalan los siguientes paquetes:
+	$ sudo aptitude install ssh git
+2.- Se crea el directorio del proyecto y se inicializa con git:
+	$ mkdir meanapp
+	$ git init
+	Nota: Para ver el estado se usa el comando 'git status'
+3.- Se configura la llave de seguridad para la comunicación cifrada con el repositorio git:
+	3.1- Para ver las llaves publicas del sistema se ejecuta 
+		$ ls -al ~/.ssh
+	3.2.- Se genera la nueva llave ejecutando:
+		$ ssh-keygen -t rsa -b 4096 -C "epilef.rodriguez@gmail.com"
+		Nota: Se recomienda dejar por defecto los parametros solicitados.
+	3.3.- Se verifica que el agente este corriendo y se agrega la llave SSH al agente:
+		$ eval "$(ssh-agent -s)"
+		$ ssh-add ~/.ssh/id_rsa
+	3.4.- Luego se agrega la llave del equipo a la cuenta en github, en settings - SSH Keys - Ass SSH Keys, para copiar la llave se ejecuta:
+		$ cat /home/epilef/.ssh/id_rsa.pub
+	3.5.- Finalmente podemos probar la conexión:
+		$ ssh -T git@github.com
+4.- Se Agrega el repositorio remoto de git y se clona para su trabajo en local:
+	$ git remote (Para ver todos los repositorios remotos del sistema)
+	$ git remote add origin git@github.com:Khanos/meanapp.git
+	$ git clone -u origin master
