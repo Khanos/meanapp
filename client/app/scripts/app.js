@@ -56,6 +56,11 @@ angular
         controller: 'MovieEditCtrl',
         controllerAs: 'movieEdit'
       })
+      .when('/newuser', {
+        templateUrl: 'views/newuser.html',
+        controller: 'NewuserCtrl',
+        controllerAs: 'newuser'
+      })
       .otherwise({
         redirectTo: '/'
       });

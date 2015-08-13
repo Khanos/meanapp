@@ -37,7 +37,8 @@ Configuración del Entorno de Desarrollo
 	Una vez creada la carpeta cliente, se ingresa en ella y se ejecuta:
 		$ npm install -g yo
 
-Configuración del Repositorio
+#########################################################################
+######################Configuración del Repositorio######################
 1.- Se instalan los siguientes paquetes:
 	$ sudo aptitude install ssh git
 2.- Se crea el directorio del proyecto y se inicializa con git:
@@ -61,3 +62,79 @@ Configuración del Repositorio
 	$ git remote (Para ver todos los repositorios remotos del sistema)
 	$ git remote add origin git@github.com:Khanos/meanapp.git
 	$ git clone -u origin master
+
+#########################################################################
+############################## Mapeo de BD ##############################
+
+Configurar la base de datos:
+	1.- Primero se agrega al index.js ubicado en '/models' el nombre del modelo y la ruta:
+		
+		nombredelmodelo: require('./RutaAlModelo').
+		
+		Nota: el 'nombredelmodelo' es el nombre del objeto que representa al modelo y por el que se transferira toda la información a la base de datos. La './RutaAlModelo' representa la ruta al archivo js ubicado por lo general dentro de la misma carpeta /models y representa el modelo fisico de la tabla en la base de datos.
+
+	2.- Se agrega el modelo con el mapeo de los campos en la base de datos usando la herramienta para el modelado de datos 'mongoose', en el archivo NombreDelModelo.js dentro de la carpeta modelo del servidor y se agrega Ejemplo:
+
+		var mongoose = require('mongoose');
+		var uniqueValidator = require('mongoose-unique-validator');
+
+		// Create the MovieSchema.
+		var NewUserSchema = new mongoose.Schema({
+		  username: {
+		    type: String,
+		    index: true, 
+		    unique: true,
+		    required: true
+		  },
+		  email: {
+		    type: String,       
+		    required: true
+		  },
+		  password: {
+		    type: String,
+		    required: true
+		  }
+		});
+		NewUserSchema.plugin(uniqueValidator, { message: 'Error, se espera que {PATH} sea unico.' });
+
+		// Export the model schema.
+		module.exports = NewUserSchema;
+
+	3.- Se agrega el controllador dentro de la carpeta controlador y se agrega:
+
+		var restful = require('node-restful');
+
+		module.exports = function(app, route) {
+
+		  // Setup the controller for REST.
+		  var rest = restful.model(
+		    'newuser',
+		    app.models.newuser
+		  ).methods(['get','post']);
+
+		  // Register this endpoint with the application.
+		  rest.register(app, route);
+
+		  // Return middleware.
+		  return function(req, res, next) {
+		    next();
+		  };
+		};
+
+		Nota: los metodos que se admiten en HTTP para un servicio restful son: POST, GET, PUT, DELETE. 
+
+	4.- Se agrega el nombre del modelo a la ruta principal de los modelos del sistema de la ruta en el archivo routes.js del directorio raiz del sistema:
+		'/newuser': require('./controllers/NewUserController')
+
+	5.- Finalmente se inicializa el servidor y se accede a traves del navegador a la dirección http://localhost:3000/newuser
+
+#########################################################################
+##################### Enrutar los datos del CLiente #####################
+
+Configuración del cliente para enlazar a los datos del servidor.
+	1.- Primero ejecutamos desde la terminal ubicados en el directorio raiz del cliente de la aplicación:
+		$ yo angular:route nombredelmodelo
+
+		Nota: Este creara todos los archivos necesarios dentro del controlador y la vista de la capa del cliente (Como leyeron crea la VISTA de la aplicación y el CONTROLADOR automaticamente XD, pero solo los archivos vacios ':(' ).
+
+	2.- Luego hacemos referencia a la vista desde nuestra pagina principal a partir de la etiqueta: ng-href="#/newuser" en cualquier parte que se requiere el llamado de la vista.

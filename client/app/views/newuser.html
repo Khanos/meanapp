@@ -1,0 +1,21 @@
+<h2>Bienvenidos al FrontEnd</h2>
+<form role="form">
+  <div class="form-group">
+    <label for="title" class="control-label">Nombre de usuario</label>
+    <input type="text" ng-model="newuser.username" class="form-control" id="username" placeholder="Este será su nombre de usuario.">
+  </div>
+  <div class="form-group">
+    <label for="title" class="control-label">Correo electrónico</label>
+    <input type="text" ng-model="newuser.email" class="form-control" id="email" placeholder="Usted ocasionalmente recibirá correos relacionados a su cuenta.">
+  </div>
+  <div class="form-group">
+    <label for="title" class="control-label">Contraseña</label>
+    <input type="password" ng-model="newuser.password" class="form-control" id="password" placeholder="Debe ser mayor a 4 dígitos y debe contener al menos una letra minúscula y un numero.">
+  </div>
+  <div class="form-group">
+    <label for="title" class="control-label">Repetir contraseña</label>
+    <input type="password" ng-model="newuser.password" class="form-control" id="password" placeholder="Debe ser igual al anterior.">
+  </div>
+  <input type="submit" class="btn btn-primary" ng-click="" value="Cancelar">
+  <input type="submit" class="btn btn-primary" ng-click="saveMovie()" value="Guardar">
+</form>
