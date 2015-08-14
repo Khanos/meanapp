@@ -59,7 +59,7 @@ angular
       .when('/newuser', {
         templateUrl: 'views/newuser.html',
         controller: 'NewuserCtrl',
-        controllerAs: 'newuser'
+        controllerAs: 'newUser'
       })
       .otherwise({
         redirectTo: '/'
@@ -74,4 +74,14 @@ angular
   })
   .factory('Movie', function(MovieRestangular) {
     return MovieRestangular.service('movie');
-  });
+  })
+  .factory('NewUserRestangular', function(Restangular) {
+    return Restangular.withConfig(function(RestangularConfigurer) {
+      RestangularConfigurer.setRestangularFields({
+        id: '_id'
+      });
+    });
+  })
+  .factory('NewUser', function(NewUserRestangular) {
+    return NewUserRestangular.service('newuser');
+  })
