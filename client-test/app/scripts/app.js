@@ -15,10 +15,12 @@ var app = angular.module('clientTestApp', [
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'restangular'
   ]);
 
-app.config(function ($routeProvider) {
+app.config(function ($routeProvider,RestangularProvider) {
+    RestangularProvider.setBaseUrl('http://localhost:3000');
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -39,3 +41,15 @@ app.config(function ($routeProvider) {
         redirectTo: '/'
       });
   });
+
+app.factory('NewUserRestangular', function(Restangular) {
+    return Restangular.withConfig(function(RestangularConfigurer) {
+      RestangularConfigurer.setRestangularFields({
+        id: '_id'
+      });
+    });
+  });
+
+app.factory('NewUser', function(NewUserRestangular) {
+    return NewUserRestangular.service('newuser');
+  })

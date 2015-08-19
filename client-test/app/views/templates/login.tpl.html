@@ -1,15 +1,30 @@
 <div class="bs-example">
-<form role="form" name="form1">
-  <div class="form-group">
-  	<h3>Bienvenido: <span>{{user.mail}}</span></h3>
-    <label for="exampleInputEmail1">Correo Electrónico</label>
-    <input type="text" placeholder="Ingrese su nombre de usuario"  class="form-control" ng-model="user.mail" required>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Contraseña</label>
-    <input type="password" placeholder="Ingrese la contraseña" id="exampleInputPassword1" class="form-control" ng-model="user.pass" required>
-  </div>
-  <button class="btn btn-default" type="submit" ng-click="login(user)" ng-disabled="form1.$invalid">Enviar</button>
-  <p>{{msgtxt}}</p>
-</form>
+    <form role="form" name="form1" ng-controller="LoginCtrl">
+        <h3>Bienvenido: <span>{{newuser.username}}</span></h3>
+        <div class="form-group">
+            <label for="username" class="control-label">Nombre de usuario</label>
+            <input type="text" ng-model="newuser.username" class="form-control" name="username" id="username" placeholder="Este será su nombre de usuario." required>
+            <div ng-messages="form1.username.$error" style="color:maroon" role="alert">
+                <div ng-message="required">El campo Nombre de usuario es requerido.</div>
+            </div>
+        </div>
+        <div class="form-group">
+          	<label for="exampleInputEmail1">Correo electrónico</label>
+            <input type="email" name="imputEmail" placeholder="Ingrese su nombre de usuario"  class="form-control" ng-model="newuser.mail" required>
+            <div ng-messages="form1.imputEmail.$error" style="color:maroon" role="alert">
+                <div ng-message="required">El campo Correo Electrónico es requerido.</div>
+                <div ng-message="email">Debe contener una dirección de correo valida</div>
+            </div>
+        </div>  
+        <div class="form-group">
+            <label for="exampleInputPassword1">Contraseña</label>
+            <input type="password" name="imputPassword" placeholder="Ingrese la contraseña" id="exampleInputPassword1" class="form-control" ng-model="newuser.pass" required>
+            <div ng-messages="form1.imputPassword.$error" style="color:maroon" role="alert">
+                <div ng-message="required">El campo Contraseña es requerido.</div>
+            </div>
+        </div>
+        <a class="btn btn-danger" href="/#"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+        <button class="btn btn-primary" type="submit" ng-click="loginfunc(newuser)" ng-disabled="form1.$invalid"><span class="glyphicon glyphicon-remove"></span> Enviar</button>
+        <p>{{msgtxt}}</p>
+    </form>
 </div>
