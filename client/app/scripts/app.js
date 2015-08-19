@@ -11,6 +11,8 @@
 angular
   .module('clientApp', [
     'ngRoute',
+    'ui.bootstrap',
+    'ngMessages',
     'restangular'
   ])
   .config(function ($routeProvider, RestangularProvider) {
@@ -60,6 +62,16 @@ angular
         templateUrl: 'views/newuser.html',
         controller: 'NewuserCtrl',
         controllerAs: 'newUser'
+      })
+      .when('/test', {
+        templateUrl: 'views/test.html',
+        controller: 'TestCtrl',
+        controllerAs: 'test'
+      })
+      .when('/test2', {
+        templateUrl: 'views/test2.html',
+        controller: 'Test2Ctrl',
+        controllerAs: 'test2'
       })
       .otherwise({
         redirectTo: '/'

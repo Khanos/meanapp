@@ -1,0 +1,77 @@
+<p>This is the test2 view.</p>
+<h1>Hora de programar</h1>
+
+<!--
+<h3>Prueba de un mensaje de alerta</h3>
+<div ng-controller="Test2Ctrl">
+  <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+  <button type="button" class='btn btn-default' ng-click="addAlert('danger', 'Esta es una prueba')">Add Alert</button>
+</div>
+<h3>Prueba 2 de un mensaje de alerta</h3>
+<div ng-controller="Test2Ctrl">
+	<alert type='danger' close="closeAlert($index)">Esta es una prueba</alert>
+</div>
+-->
+
+<!--
+<h3>Prueba 3 de un mensaje de alerta</h3>
+<form role="form" name="formTest">
+  <div class="form-group">
+    <label for="username" class="control-label">Nombre de usuario</label>
+    <input type="text" ng-model="newuser.username" class="form-control" name="username" placeholder="Este será su nombre de usuario.">
+  </div>
+  
+  <div class="form-group">
+    <label for="email" class="control-label">Correo electrónico</label>
+    <input type="email" ng-model="newuser.email" class="form-control" name="email" placeholder="Usted ocasionalmente recibirá correos relacionados a su cuenta." required>
+  </div>
+  <div class="help-block has-error"
+		ng-if="formTest.email.$dirty"
+		ng-messages="formTest.email.$error">
+		<div ng-message="required">
+			El campo Correo electrónico es requerido.
+		</div>
+		<div ng-message="email">
+			Debe contener un correo electrónico valido.
+		</div>
+	</div>
+
+  <div class="form-group">
+    <label for="password" class="control-label">Contraseña</label>
+    <input type="password"ng-model="newuser.password" class="form-control" name="password" placeholder="Debe ser mayor a 4 dígitos y debe contener al menos una letra minúscula y un numero.">
+  </div>
+  <div class="form-group">
+    <label for="password" class="control-label">Repetir Contraseña</label>
+    <input type="password"ng-model="newuser.password" class="form-control" name="passwordRepeat" placeholder="Debe ser igual a la anterior.">
+  </div>  
+  <a class="btn btn-danger" href="/#"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+  <a class="btn btn-primary" ng-click="saveNewUser()"><span class="glyphicon glyphicon-ok"></span> Guardar</a>
+</form>
+-->
+
+<h3>Prueba 4 de un mensaje de alerta</h3>
+<form role="form" name="formTest">
+  <div class="form-group">
+    <label for="username" class="control-label">Nombre de usuario</label>
+    <input type="text" ng-model="newuser.username" class="form-control" name="username" placeholder="Este será su nombre de usuario." required minlength="6">
+    <div ng-messages="formTest.username.$error" style="color:maroon" role="alert">
+	    <div ng-message="required">El campo usuario es requerido.</div>
+	    <div ng-message="minlength">El Nombre de Usuario es muy corto. Debe poseer al menos 6 letras.</div>
+  	</div>
+  </div>
+  <div class="form-group">
+    <label for="password" class="control-label">Contraseña</label>
+    <input type="password"ng-model="newuser.password" class="form-control" name="password" placeholder="Debe ser mayor a 4 dígitos y debe contener al menos una letra minúscula y un numero." required>
+    <div ng-messages="formTest.username.$error" style="color:maroon" role="alert" minlength="6">
+	    <div ng-message="required">El campo Contraseña es requerido.</div>
+	    <div ng-message="minlength">El Nombre de Usuario es muy corto. Debe poseer al menos 4 letras.</div>
+  	</div>
+  </div>
+  <div class="form-group">
+    <label for="password" class="control-label">Repetir Contraseña</label>
+    <input type="password"ng-model="newuser.password" class="form-control" name="passwordRepeat" placeholder="Debe ser igual a la anterior.">
+  </div>  
+  <a class="btn btn-danger" href="/#"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+  <a class="btn btn-primary" ng-click="saveNewUser()"><span class="glyphicon glyphicon-ok"></span> Guardar</a>
+</form>
+

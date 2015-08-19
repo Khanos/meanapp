@@ -13,6 +13,7 @@ Configuración del Entorno de Desarrollo
 	$ sudo npm install -g bower
 	$ sudo npm install -g mongoose-unique-validator
 	$ sudo npm install -g compass
+	$ sudo npm install -g jshint
 
 	Nota: El paquete compass (Necesario para el servidor grunt) puede ser instalado mediante el instalador de ruby, una vez actualizado:
 		$ sudo gem install rubygems-update
@@ -36,6 +37,15 @@ Configuración del Entorno de Desarrollo
 	4.1- Instalación de yeoman:
 	Una vez creada la carpeta cliente, se ingresa en ella y se ejecuta:
 		$ npm install -g yo
+
+	Nota: si muestran errores con el bloqueo de librerias para las dependencias.
+		$ sudo chown -R $USER ~/.npm
+		$ sudo chown -R $USER /usr/local/lib/node_modules
+		$ mkdir clientAppFolder
+		$ cd clientAppFolder
+		$ npm install yo bower grunt-cli gulp generator-webapp generator-angular --save-dev
+		$ yo angular
+
 
 #########################################################################
 ######################Configuración del Repositorio######################
