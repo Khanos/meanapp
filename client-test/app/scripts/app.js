@@ -19,7 +19,7 @@ var app = angular.module('clientTestApp', [
     'restangular'
   ]);
 
-app.config(function ($routeProvider,RestangularProvider) {
+app.config(function ($routeProvider, RestangularProvider) {
     RestangularProvider.setBaseUrl('http://localhost:3000');
     $routeProvider
       .when('/', {
