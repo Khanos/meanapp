@@ -37,6 +37,16 @@ app.config(function ($routeProvider, RestangularProvider) {
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
+      .when('/auto', {
+        templateUrl: 'views/auto.html',
+        controller: 'AutoCtrl',
+        controllerAs: 'auto'
+      })
+      .when('/perro', {
+        templateUrl: 'views/perro.html',
+        controller: 'PerroCtrl',
+        controllerAs: 'perro'
+      })
       .otherwise({
         redirectTo: '/'
       });
